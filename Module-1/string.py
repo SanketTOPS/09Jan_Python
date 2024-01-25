@@ -12,6 +12,7 @@ print(mystr[:4])"""
 # ---------- String Methods ---------------- #
 
 print(mystr)
+
 #print(mystr.strip())
 #print(mystr.lower())
 #print(mystr.upper())
