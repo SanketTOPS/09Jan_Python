@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        /* Internal CSS */
+    </style>
+</head>
+<body style="background-color: rgb(39, 170, 144);">
+    <center><h1 style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;color:brown;">Welcome to Home Page</h1></center>
+    <hr>
+    <!-- <a href="/about">About Page</a>
+    <a href="/contact">Contact Page</a> -->
+
+    <a href="{% url 'about'%}">About Page</a>
+    <a href="{% url 'contact'%}">Contact Page</a>
+</body>
+</html>
