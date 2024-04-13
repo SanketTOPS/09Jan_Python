@@ -29,6 +29,7 @@
             <th>Email</th>
             <th>DOB</th>
             <th>Mobile</th>
+            <th>Action</th>
         </tr>
         {% for i in data %}
         <tr>
@@ -38,6 +39,7 @@
             <td>{{i.email}}</td>
             <td>{{i.dob}}</td>
             <td>{{i.mobile}}</td>
+            <td><a href="/updatedata/{{i.id}}">Update</a>&nbsp;&nbsp;<a href="/deletedata/{{i.id}}">Delete</a></td>
         </tr>
         {% endfor %}
     </table>
