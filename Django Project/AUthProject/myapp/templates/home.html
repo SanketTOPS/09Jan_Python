@@ -14,10 +14,14 @@
 
 <body style="background-color: bisque;">
     <center>
-        <h1>Welcome to Home</h1>
+        <h1>Welcome, {{user}}</h1>
     </center>
     <hr>
-
+    {% if user is none %}
+    <center><a class="btn btn-primary" href="/">Login</a>
+    {% else %}
+    <a class="btn btn-danger" href="/userlogout">Logout</a></center>
+    {% endif %}
    
 </body>
 
