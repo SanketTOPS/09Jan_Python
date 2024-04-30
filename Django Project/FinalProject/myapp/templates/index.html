@@ -148,7 +148,7 @@
 
         .dk-footer-box-info {
             position: absolute;
-            top: -122px;
+            top: -30px;
             background: #202020;
             padding: 40px;
             z-index: 2;
@@ -442,10 +442,10 @@
 
 <body style="background-color: rgb(13, 13, 13);">
     <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <nav id="top" class="navbar navbar-expand-lg bg-dark navbar-dark">
         <div class="container-fluid">
             <!-- <a class="navbar-brand" href="#">NotesApp</a> -->
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
                 <img src="/static/images/notesapp_logo.png" alt="Logo" width="40" height="30"
                     class="d-inline-block align-text-top">
                 NotesApp
@@ -458,19 +458,19 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Notes</a>
+                        <a class="nav-link active" aria-current="page" href="/notes">Notes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Profile</a>
+                        <a class="nav-link active" aria-current="page" href="/profile">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">About</a>
+                        <a class="nav-link active" aria-current="page" href="/about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Contact</a>
+                        <a class="nav-link active" aria-current="page" href="/contact">Contact</a>
                     </li>
 
                 </ul>
@@ -478,8 +478,8 @@
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-warning" type="submit">Search</button>
                 </form>
-                <button class="btn btn-danger mx-2" type="submit">Login</button>
-                <button class="btn btn-primary" type="submit">Signup</button>
+                <a href="/userlogin" class="btn btn-danger mx-2">Login</a>
+                <a href="/usersignup" class="btn btn-primary">Signup</a>
             </div>
         </div>
     </nav>
@@ -609,16 +609,16 @@
                                 </div>
                                 <ul>
                                     <li>
-                                        <a href="#">About</a>
+                                        <a href="/about">About</a>
                                     </li>
                                     <li>
-                                        <a href="#">Contact</a>
+                                        <a href="/contact">Contact</a>
                                     </li>
                                     <li>
-                                        <a href="#">Profile</a>
+                                        <a href="/profile">Profile</a>
                                     </li>
                                     <li>
-                                        <a href="#">Blog</a>
+                                        <a href="/blog">Blog</a>
                                     </li>
                                 </ul>
 
@@ -676,9 +676,9 @@
         <!-- End Copyright -->
         <!-- Back to top -->
         <div id="back-to-top" class="back-to-top">
-            <button class="btn btn-dark" title="Back to Top" style="display: block;">
+            <a href="#top" class="btn btn-dark" title="Back to Top" style="display: block;">
                 <i class="fa fa-angle-up"></i>
-            </button>
+            </a>
         </div>
         <!-- End Back to top -->
     </footer>

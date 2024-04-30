@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notes</title>
+    <title>Blog</title>
     <style>
         body {
             color: #ccc
@@ -441,8 +441,8 @@
 </head>
 
 <body style="background-color: rgb(13, 13, 13);">
-     <!-- Navbar Start -->
-     <nav id="top" class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <!-- Navbar Start -->
+    <nav id="top" class="navbar navbar-expand-lg bg-dark navbar-dark">
         <div class="container-fluid">
             <!-- <a class="navbar-brand" href="#">NotesApp</a> -->
             <a class="navbar-brand" href="/">
@@ -476,23 +476,10 @@
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-warning mx-2" type="submit">Search</button>
+                    <button class="btn btn-warning" type="submit">Search</button>
                 </form>
-                {% if user is none %}
-                <a href="/userlogin" class="btn btn-danger">Login</a>
-                <a href="/usersignup" class="btn btn-primary mx-2">Signup</a>
-                {% else %}
-                <div class="dropdown">
-                    <button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      {{user}}
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="/profile">Update Profile</a></li>
-                      <li><a class="dropdown-item" href="/userlogout">Logout</a></li>
-                     
-                    </ul>
-                  </div>
-                {% endif %}
+                <a href="/userlogin" class="btn btn-danger mx-2">Login</a>
+                <a href="/usersignup" class="btn btn-primary">Signup</a>
             </div>
         </div>
     </nav>
@@ -610,6 +597,7 @@
                                         <a href="/blog">Blog</a>
                                     </li>
                                 </ul>
+
 
                             </div>
                             <!-- End Footer Widget -->

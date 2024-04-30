@@ -148,7 +148,7 @@
 
         .dk-footer-box-info {
             position: absolute;
-            top: -122px;
+            top: -30px;
             background: #202020;
             padding: 40px;
             z-index: 2;
@@ -434,14 +434,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
 </head>
 
-<body style="background-color: beige;">
+<body style="background-color: rgb(253, 246, 246);">
     <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <nav id="top" class="navbar navbar-expand-lg bg-dark navbar-dark">
         <div class="container-fluid">
             <!-- <a class="navbar-brand" href="#">NotesApp</a> -->
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
                 <img src="/static/images/notesapp_logo.png" alt="Logo" width="40" height="30"
                     class="d-inline-block align-text-top">
                 NotesApp
@@ -454,42 +458,130 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Notes</a>
+                        <a class="nav-link active" aria-current="page" href="/notes">Notes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Profile</a>
+                        <a class="nav-link active" aria-current="page" href="/profile">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">About</a>
+                        <a class="nav-link active" aria-current="page" href="/about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Contact</a>
+                        <a class="nav-link active" aria-current="page" href="/contact">Contact</a>
                     </li>
 
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-warning" type="submit">Search</button>
+                    <button class="btn btn-warning mx-2" type="submit">Search</button>
                 </form>
-                <button class="btn btn-danger mx-2" type="submit">Login</button>
-                <button class="btn btn-primary" type="submit">Signup</button>
+                {% if user is none %}
+                <a href="/userlogin" class="btn btn-danger">Login</a>
+                <a href="/usersignup" class="btn btn-primary mx-2">Signup</a>
+                {% else %}
+                <div class="dropdown">
+                    <button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        {{user}}
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/userlogout">Logout</a></li>
+                    </ul>
+                </div>
+                {% endif %}
             </div>
         </div>
     </nav>
     <!-- Navbar End -->
 
+     <!-- Profile Form Start -->
+     <div class="container my-5">
+        <form method="post" class="row g-3 needs-validation" novalidate>
+            {% csrf_token %}
+            <div class="col-md-6">
+                <label for="validationCustom01" class="form-label">First name</label>
+                <input type="text" value="{{cuser.firstname}}" name="firstname" class="form-control" id="validationCustom01" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustom02" class="form-label">Last name</label>
+                <input type="text" value="{{cuser.lastname}}" name="lastname" class="form-control" id="validationCustom02" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustomUsername" class="form-label">Username</label>
+                <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                    <input type="text" value="{{cuser.username}}" name="username" class="form-control" id="validationCustomUsername"
+                        aria-describedby="inputGroupPrepend" required>
+                    <div class="invalid-feedback">
+                        Please choose a username.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustom01" class="form-label">Password</label>
+                <input type="password" value="{{cuser.password}}" name="password" class="form-control" id="validationCustom01" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustom03" class="form-label">City</label>
+                <input type="text" value="{{cuser.city}}" name="city" class="form-control" id="validationCustom03" required>
+                <div class="invalid-feedback">
+                    Please provide a valid city.
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="validationCustom04" class="form-label">State</label>
+                <select class="form-select" name="state" id="validationCustom04" required>
+                    <option>{{cuser.state}}</option>
+                    <option>Gujarat</option>
+                    <option>Delhi</option>
+                    <option>Punjab</option>
+                    <option>Goa</option>
+                    <option>Other</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please select a valid state.
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="validationCustom05" class="form-label">Mobile</label>
+                <input type="number" value="{{cuser.mobile}}" name="mobile" class="form-control" id="validationCustom05" required>
+                <div class="invalid-feedback">
+                    Please provide a valid zip.
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                    <label class="form-check-label" for="invalidCheck">
+                        Agree to terms and conditions
+                    </label>
+                    <div class="invalid-feedback">
+                        You must agree before submitting.
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-success" type="submit">Update Profile</button>
+            </div>
+        </form>
+    </div>
+    <!-- Profile Form End -->
+
+
 
     <!-- Footer Code Start -->
-    <!--Important link source from https://bootsnipp.com/snippets/ooa9M-->
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!------ Include the above in your HEAD tag ---------->
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
     <footer id="dk-footer" class="dk-footer">
         <div class="container">
             <div class="row">
@@ -532,6 +624,7 @@
                                     </a>
                                 </li>
                             </ul>
+
                         </div>
                         <!-- End Social link -->
                     </div>
@@ -585,16 +678,16 @@
                                 </div>
                                 <ul>
                                     <li>
-                                        <a href="#">About</a>
+                                        <a href="/about">About</a>
                                     </li>
                                     <li>
-                                        <a href="#">Contact</a>
+                                        <a href="/contact">Contact</a>
                                     </li>
                                     <li>
                                         <a href="#">Profile</a>
                                     </li>
                                     <li>
-                                        <a href="#">Blog</a>
+                                        <a href="/blog">Blog</a>
                                     </li>
                                 </ul>
 
@@ -652,9 +745,9 @@
         <!-- End Copyright -->
         <!-- Back to top -->
         <div id="back-to-top" class="back-to-top">
-            <button class="btn btn-dark" title="Back to Top" style="display: block;">
+            <a href="#top" class="btn btn-dark" title="Back to Top" style="display: block;">
                 <i class="fa fa-angle-up"></i>
-            </button>
+            </a>
         </div>
         <!-- End Back to top -->
     </footer>
