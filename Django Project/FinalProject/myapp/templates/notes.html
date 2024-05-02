@@ -440,9 +440,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
 </head>
 
-<body style="background-color: rgb(13, 13, 13);">
-     <!-- Navbar Start -->
-     <nav id="top" class="navbar navbar-expand-lg bg-dark navbar-dark">
+<body style="background-color: rgb(253, 246, 246);">
+    <!-- Navbar Start -->
+    <nav id="top" class="navbar navbar-expand-lg bg-dark navbar-dark">
         <div class="container-fluid">
             <!-- <a class="navbar-brand" href="#">NotesApp</a> -->
             <a class="navbar-brand" href="/">
@@ -483,15 +483,16 @@
                 <a href="/usersignup" class="btn btn-primary mx-2">Signup</a>
                 {% else %}
                 <div class="dropdown">
-                    <button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      {{user}}
+                    <button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        {{user}}
                     </button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="/profile">Update Profile</a></li>
-                      <li><a class="dropdown-item" href="/userlogout">Logout</a></li>
-                     
+                        <li><a class="dropdown-item" href="/profile">Update Profile</a></li>
+                        <li><a class="dropdown-item" href="/userlogout">Logout</a></li>
+
                     </ul>
-                  </div>
+                </div>
                 {% endif %}
             </div>
         </div>
@@ -499,10 +500,40 @@
     <!-- Navbar End -->
 
 
-   
+    <!-- Notes Form Start -->
+    <div class="container my-5">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-floating mb-3">
+                <input type="text" name="title" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Query Title</label>
+            </div>
+            <div class="form-floating">
+                <select class="form-select" name="opt" id="floatingSelect" aria-label="Floating label select example">
+                    <option>Core Python</option>
+                    <option>Advance Python</option>
+                    <option>Python Framework</option>
+                    <option>Java</option>
+                    <option>PHP</option>
+                    <option>Other</option>
+                </select>
+                <label for="floatingSelect">Works with selects</label>
+            </div>
+            <div>
+                <label for="formFileLg" class="form-label my-2">Upload your file's</label>
+                <input class="form-control form-control-lg" name="myfile" id="formFileLg" type="file">
+            </div>
+            <div class="form-floating my-4">
+                <textarea class="form-control" name="comments" placeholder="Leave a comment here" id="floatingTextarea2"
+                    style="height: 100px"></textarea>
+                <label for="floatingTextarea2">Comments</label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg">Submit Notes</button>
+        </form>
+    </div>
+    <!-- Notes Form End -->
 
     <!-- Footer Code Start -->
-
     <footer id="dk-footer" class="dk-footer">
         <div class="container">
             <div class="row">

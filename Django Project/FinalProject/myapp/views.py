@@ -19,12 +19,27 @@ def contact(request):
 
 def notes(request):
     user=request.session.get('user')
+    if request.method=='POST':
+        newnotes=notesForm(request.POST,request.FILES)
+        if newnotes.is_valid():
+            newnotes.save()
+            print("Your notes has been submitted!")
+        else:
+            print(newnotes.errors)
     return render(request,'notes.html',{'user':user})
 
 def profile(request):
     user=request.session.get('user')
     userid=request.session.get('userid')
     cuser=signup.objects.get(id=userid)
+    if request.method=='POST':
+        updatedata=signupForm(request.POST,instance=cuser)
+        if updatedata.is_valid():
+            updatedata.save()
+            print("Your profile has been updated!")
+            return redirect('notes')
+        else:
+            print(updatedata.errors)
     return render(request,'profile.html',{'user':user,'cuser':cuser})
 
 def userlogin(request):
