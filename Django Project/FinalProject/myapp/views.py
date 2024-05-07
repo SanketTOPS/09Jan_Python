@@ -15,6 +15,20 @@ def about(request):
     return render(request,'about.html')
 
 def contact(request):
+    if request.method=='POST':
+        newcontact=contactForm(request.POST)
+        if newcontact.is_valid():
+            newcontact.save()
+
+            #Send Email Code
+            sub="Thank you!"
+            msg=f"Hello User!\n\nWe recived your request. We will contact you shortly.\n\nEnjoy our services, If you have any query regarding,\nPlease contact on \n\n +91 9724799469 or Email us sanket.tops@gmail.com\n\nThanks & Regards\nTOPS Technologies\nRajkot - Guj.(INDIA)"
+            from_email=settings.EMAIL_HOST_USER
+            to_email=[request.POST['email']]
+            send_mail(subject=sub,message=msg,from_email=from_email,recipient_list=to_email)
+            print("Your request has been sent!")
+        else:
+            print(newcontact.errors)
     return render(request,'contact.html')
 
 def notes(request):

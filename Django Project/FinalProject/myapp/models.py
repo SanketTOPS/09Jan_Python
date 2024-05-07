@@ -20,3 +20,12 @@ class notes(models.Model):
     myfile=models.FileField(upload_to='NotesFiles')
     comments=models.TextField()
 
+
+class contactus(models.Model):
+    created=models.DateTimeField(auto_now_add=True)
+    name=models.CharField(max_length=50)
+    phone=models.BigIntegerField()
+    email=models.EmailField()
+    msg=models.TextField()
+
+
